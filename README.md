@@ -1,18 +1,45 @@
-# Deep Learning Neural Style Transfer
+# Neural Style Transfer: VGG-19 Implementation
 
-Neural style transfer is an optimization algorithm used to take a “content” image and a “style” image, and
-blend them together so the output image contains the same objects of the content image, but “rendered” in
-the style of the style image: https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/
-Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf In this project, you will implement your own neural style
-transfer algorithm to mix content images with style images.
-* Use a pre-trained image classification network (eg. 19-layer VGG network) to build the content and style
-representations, implement the weighted loss function (with content & style loss), and run gradient descent
-over the output image.
-* Pick two content images and two style images (paintings, photographs, etc), and test your algorithm over
-the 4 resulting combinations of content and style.
-* Study how the results would change with respect to training iterations, different random seeds and relative
-weight of content & style loss in the loss function. Discuss any findings that you find of interest.
-* This project can be done without a GPU, and an advanced version of this project would involve a GPU.
-* There are numerous examples of code doing similar things on the internet, though you are expected to do
-your own work for this project. If you source any key ideas from elsewhere, you must reference the source of
-those ideas
+This repository contains an implementation of the Neural Style Transfer (NST) algorithm as described by Gatys et al. (2016). The project utilizes a pre-trained **VGG-19 network** to extract content and style representations, blending them through a custom optimization process.
+
+## 1. Project Objective
+The goal is to synthesize a new image that preserves the semantic objects of a **Content Image** while adopting the artistic textures and color palettes of a **Style Image**.
+
+
+
+## 2. Technical Implementation
+* **Network Architecture:** We utilize a pre-trained **19-layer VGG network**.
+* **Content Representation:** Captured from the deeper convolutional layers (e.g., `block5_conv2`) to ensure high-level object recognition.
+* **Style Representation:** Extracted from multiple layers (`block1_conv1` through `block5_conv1`) using **Gram Matrices** to identify multi-scale correlations in textures.
+* **Optimization:** We implemented a weighted loss function and performed gradient descent on the output image pixels using the **Adam Optimizer**.
+
+
+
+## 3. Experimental Setup (The 4 Combinations)
+We tested the algorithm across four distinct pairings using iconic artistic styles and campus landmarks:
+1.  **Style A:** *A Sunday Afternoon on the Island of La Grande Jatte* (Seurat) + **Content 1:** *Alma Mater*
+2.  **Style A:** *A Sunday Afternoon on the Island of La Grande Jatte* (Seurat) + **Content 2:** *Butler Library*
+3.  **Style B:** *Impression, Sunrise* (Monet) + **Content 1:** *Alma Mater*
+4.  **Style B:** *Impression, Sunrise* (Monet) + **Content 2:** *Butler Library*
+
+## 4. Parameter Study & Findings
+We conducted an ablation study on the factors affecting the output quality:
+
+### Relative Weights ($\alpha/\beta$)
+* **Finding:** The ratio of content weight ($\alpha$) to style weight ($\beta$) is the most critical factor. Increasing the $\alpha/\beta$ ratio yields an image that more closely resembles the original photo, while decreasing it leads to a more abstract, "painterly" result.
+
+### Training Iterations
+* **Finding:** We monitored progress over 1,000 iterations. While the structure is established early, the finer stylistic nuances and color depth continue to evolve throughout the training process.
+
+
+
+### Random Seeds
+* **Finding:** Initializing the output image with different random seeds (noise) results in slight variations in the final color distribution and local textures, but the overall content structure remains robust.
+
+## 5. References
+* [1] Gatys, L. A., Ecker, A. S., & Bethge, M. (2016). "A Neural Algorithm of Artistic Style." *CVPR*.
+* [2] TensorFlow Tutorial on Neural Style Transfer with Eager Execution.
+* [3] VGG-19 Pre-trained Weights from Keras/TensorFlow.
+
+---
+**Team:** Haosheng Ai, Zi Fang, Weiwei Song, Changhao He
