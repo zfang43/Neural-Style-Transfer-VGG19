@@ -36,10 +36,10 @@ We conducted an ablation study on the factors affecting the output quality:
 ### Random Seeds
 * **Finding:** Initializing the output image with different random seeds (noise) results in slight variations in the final color distribution and local textures, but the overall content structure remains robust.
 
-## Team Members
+#### Team Members
 Haosheng Ai, Zi Fang, Weiwei Song, Changhao He
 
-## References
+#### References
 [1] Gatys, L. A., Ecker, A. S., and Bethge, M. (2015). **A Neural Algorithm of Artistic Style.** arXiv:1508.06576.  
 [2] **Neural style transfer | TensorFlow Core.** https://www.tensorflow.org/tutorials/generative/style_transfer  
 [3] Singh, M. (2017). **Artistic Style Transfer with Convolutional Neural Network.** Medium; Data Science Group, IITR.  
