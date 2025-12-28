@@ -36,7 +36,7 @@ We conducted an ablation study on the factors affecting the output quality:
 ### Random Seeds
 * **Finding:** Initializing the output image with different random seeds (noise) results in slight variations in the final color distribution and local textures, but the overall content structure remains robust.
 
-## Team Members (Group 6)
+## Team Members
 Haosheng Ai, Zi Fang, Weiwei Song, Changhao He
 
 ## References
